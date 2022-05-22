@@ -29,7 +29,7 @@
                         <div class="form-body">
                             <div class="form-body__container">
                                 <div class="title"> Оставить заявку</div>
-                                <form action="#">
+                                <form method="POST">
                                     <div class="user-details">
                                         <div class="input-box">
                                             <span class="details">Имя</span>
@@ -63,6 +63,18 @@
                                             <input type="submit" value="Оставить заявку">
                                         </div>
                                     </div>
+                                    <?php
+                                    include('php/data_base.php');
+                            $fname = $_POST['firstName'];
+                            $lname = $_POST['lastName'];
+                            $contr = $_POST['contragent'];
+                            $contrpl = $_POST['contragentPlace'];
+                            $tel = $_POST['number'];
+                            $mass = $_POST['email'];
+                            $ord = $_POST['order'];
+                             mysqli_query($link, "INSERT INTO `zakaz` (`id`, `name`, `kontragent`, `number`, `zakaz`, `familia`, `mesto kontragenta`, `post`) VALUES (NULL, '$fname', '$contr', '$tel', '$ord', '$lname', '$contrpl', '$mass');")
+                             ?>
+                            </form>
                                 </form>
                             </div>
                         </div>
@@ -80,28 +92,35 @@
                         </div>
                     </div>
                     <div class="popup__bg"> 
-                        <form class="popup">
-                            <img src="img/cross.svg" class="close-popup">
-                            <label>
-                                <input type="text" name="name">
-                                <div class="label__text">
-                                    Ваше имя
-                                </div>
-                            </label>
-                            <label>
-                                <input type="tel" name="tel">
-                                <div class="label__text">
-                                    Ваш телефон
-                                </div>
-                            </label>
-                            <label>
-                                <textarea name="message"></textarea>
-                                <div class="label__text">
-                                    Ваше сообщение
-                                </div>
-                            </label>
-                            <button type="submit">Отправить</button>
-                        </form>
+                        <form class="popup" method="POST">
+                                <img src="img/cross.svg" class="close-popup">
+                                <label>
+                                    <input type="text" name="name">
+                                    <div class="label__text">
+                                        Ваше имя
+                                    </div>
+                                </label>
+                                <label>
+                                    <input type="tel" name="tel">
+                                    <div class="label__text">
+                                        Ваш телефон
+                                    </div>
+                                </label>
+                                <label>
+                                    <textarea name="message"></textarea>
+                                    <div class="label__text">
+                                        Ваше сообщение
+                                    </div>
+                                </label>
+                                <button type="submit">Отправить</button>
+								<?php
+                            include('php/data_base.php');
+                            $name = $_POST['name'];
+                            $tel = $_POST['tel'];
+                            $mass = $_POST['message'];
+                             mysqli_query($link, "INSERT INTO `zakazat_zwonok` (`id`, `name`, `number`, `text`, `otvet`) VALUES (NULL, '$name', '$tel', '$mass', '0');")
+                             ?>
+                            </form>
                     </div>
                 </section>
             </main>

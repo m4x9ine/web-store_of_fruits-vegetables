@@ -76,7 +76,7 @@
                         </div>
                     </div>
                     <div class="popup__bg"> 
-                        <form class="popup">
+                        <form class="popup" method="POST">
                             <img src="img/cross.svg" class="close-popup">
                             <label>
                                 <input type="text" name="name">
@@ -97,6 +97,13 @@
                                 </div>
                             </label>
                             <button type="submit">Отправить</button>
+                            <?php
+                            include('php/data_base.php');
+                            $name = $_POST['name'];
+                            $tel = $_POST['tel'];
+                            $mass = $_POST['message'];
+                             mysqli_query($link, "INSERT INTO `zakazat_zwonok` (`id`, `name`, `number`, `text`, `otvet`) VALUES (NULL, '$name', '$tel', '$mass', '0');")
+                             ?>
                         </form>
                     </div>
                 </section>
